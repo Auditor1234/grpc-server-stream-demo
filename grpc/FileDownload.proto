@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package  com.li.rpc;
+
+option java_multiple_files = true;
+option java_package = "com.li.rpc";
+option java_outer_classname = "FileDownloadApi";
+
+service RouteGuide {
+    // 客户端文件流例子
+    rpc download(TargetFile) returns (stream FileInfo) {}
+  }
+  message TargetFile {
+      string filename = 1;
+  }
+  
+  message FileInfo {
+      string filename = 1;  // 文件名
+      int32 index = 2;  // 文件块数
+      bytes arrs = 3;  // 文件字节数据
+  }
+  
+  
